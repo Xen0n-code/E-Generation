@@ -1,0 +1,183 @@
+[
+  {
+    "id": "4-1-1",
+    "word": "important",
+    "meaning": "重要な",
+    "pronunciation": "ɪmˈpɔrtənt",
+    "example": "Education is very important.",
+    "level": "4級",
+    "category": "形容詞"
+  },
+  {
+    "id": "4-1-2",
+    "word": "different",
+    "meaning": "異なる",
+    "pronunciation": "dɪfərənt",
+    "example": "These two books are different.",
+    "level": "4級",
+    "category": "形容詞"
+  },
+  {
+    "id": "4-1-3",
+    "word": "interesting",
+    "meaning": "面白い",
+    "pronunciation": "ɪntrəstɪŋ",
+    "example": "This movie is very interesting.",
+    "level": "4級",
+    "category": "形容詞"
+  },
+  {
+    "id": "4-1-4",
+    "word": "beautiful",
+    "meaning": "美しい",
+    "pronunciation": "bjutəfəl",
+    "example": "She has beautiful eyes.",
+    "level": "4級",
+    "category": "形容詞"
+  },
+  {
+    "id": "4-1-5",
+    "word": "difficult",
+    "meaning": "難しい",
+    "pronunciation": "dɪfəkəlt",
+    "example": "This math problem is difficult.",
+    "level": "4級",
+    "category": "形容詞"
+  },
+  {
+    "id": "4-1-6",
+    "word": "sometimes",
+    "meaning": "時々",
+    "pronunciation": "sʌmtaɪmz",
+    "example": "I sometimes go to the library.",
+    "level": "4級",
+    "category": "副詞"
+  },
+  {
+    "id": "4-1-7",
+    "word": "always",
+    "meaning": "いつも",
+    "pronunciation": "ɔlweɪz",
+    "example": "She always arrives on time.",
+    "level": "4級",
+    "category": "副詞"
+  },
+  {
+    "id": "4-1-8",
+    "word": "usually",
+    "meaning": "普通は",
+    "pronunciation": "juʒəli",
+    "example": "I usually wake up at 7 AM.",
+    "level": "4級",
+    "category": "副詞"
+  },
+  {
+    "id": "4-1-9",
+    "word": "never",
+    "meaning": "決して〜ない",
+    "pronunciation": "nevər",
+    "example": "I never eat fast food.",
+    "level": "4級",
+    "category": "副詞"
+  },
+  {
+    "id": "4-1-10",
+    "word": "because",
+    "meaning": "なぜなら",
+    "pronunciation": "bɪkɔz",
+    "example": "I stayed home because it was raining.",
+    "level": "4級",
+    "category": "接続詞"
+  },
+  {
+    "id": "4-2-1",
+    "word": "understand",
+    "meaning": "理解する",
+    "pronunciation": "ʌndərˈstænd",
+    "example": "I understand your problem.",
+    "level": "4級",
+    "category": "動詞"
+  },
+  {
+    "id": "4-2-2",
+    "word": "remember",
+    "meaning": "覚えている",
+    "pronunciation": "rɪˈmembər",
+    "example": "I remember meeting you before.",
+    "level": "4級",
+    "category": "動詞"
+  },
+  {
+    "id": "4-2-3",
+    "word": "believe",
+    "meaning": "信じる",
+    "pronunciation": "bɪˈliv",
+    "example": "I believe in you.",
+    "level": "4級",
+    "category": "動詞"
+  },
+  {
+    "id": "4-2-4",
+    "word": "weather",
+    "meaning": "天気",
+    "pronunciation": "ˈweðər",
+    "example": "The weather is nice today.",
+    "level": "4級",
+    "category": "自然"
+  },
+  {
+    "id": "4-2-5",
+    "word": "station",
+    "meaning": "駅",
+    "pronunciation": "ˈsteɪʃən",
+    "example": "The train station is nearby.",
+    "level": "4級",
+    "category": "場所"
+  },
+  {
+    "id": "4-2-6",
+    "word": "hospital",
+    "meaning": "病院",
+    "pronunciation": "ˈhɑspɪtəl",
+    "example": "She works at the hospital.",
+    "level": "4級",
+    "category": "場所"
+  },
+  {
+    "id": "4-2-7",
+    "word": "travel",
+    "meaning": "旅行する",
+    "pronunciation": "ˈtrævəl",
+    "example": "I love to travel abroad.",
+    "level": "4級",
+    "category": "動詞"
+  },
+  {
+    "id": "4-2-8",
+    "word": "study",
+    "meaning": "勉強する",
+    "pronunciation": "ˈstʌdi",
+    "example": "I study English every day.",
+    "level": "4級",
+    "category": "動詞"
+  },
+  {
+    "id": "4-2-9",
+    "word": "future",
+    "meaning": "未来",
+    "pronunciation": "ˈfjutʃər",
+    "example": "What are your plans for the future?",
+    "level": "4級",
+    "category": "時間"
+  },
+  {
+    "id": "4-2-10",
+    "word": "foreign",
+    "meaning": "外国の",
+    "pronunciation": "ˈfɔrən",
+    "example": "She speaks three foreign languages.",
+    "level": "4級",
+    "category": "形容詞"
+  }
+]
+EOF < /dev/null
