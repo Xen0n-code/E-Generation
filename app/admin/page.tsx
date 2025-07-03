@@ -3,7 +3,7 @@
 import { useUser } from '@/contexts/UserContext'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
-import LoginScreenTemp from '@/components/LoginScreenTemp'
+import LoginScreen from '@/components/LoginScreen'
 import Header from '@/components/Header'
 import AdminPanel from '@/components/AdminPanel'
 import Link from 'next/link'
@@ -34,7 +34,7 @@ export default function AdminPage() {
 
   // ログインしていない場合
   if (!user) {
-    return <LoginScreenTemp />
+    return <LoginScreen />
   }
 
   // 管理者でない場合

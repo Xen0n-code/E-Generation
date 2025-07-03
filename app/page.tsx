@@ -6,7 +6,7 @@ import { EikenLevel, EIKEN_LEVELS } from '@/types'
 import { getStageCount } from '@/utils/gameLogic'
 import { isStageUnlocked, loadProgress } from '@/utils/storage'
 import { useUser } from '@/contexts/UserContext'
-import LoginScreenTemp from '@/components/LoginScreenTemp'
+import LoginScreen from '@/components/LoginScreen'
 import Header from '@/components/Header'
 import Link from 'next/link'
 
@@ -61,7 +61,7 @@ export default function HomePage() {
 
   // ログインしていない場合はログイン画面を表示
   if (!user) {
-    return <LoginScreenTemp />
+    return <LoginScreen />
   }
 
   return (
