@@ -12,6 +12,7 @@ export interface UserAccount {
 // Admin初期化（初回起動時のみ）
 export const initializeAdmin = async (): Promise<void> => {
   try {
+    console.log('Initializing admin account...')
     const adminDocRef = doc(db, 'user_accounts', 'admin')
     const adminDoc = await getDoc(adminDocRef)
     
@@ -25,21 +26,37 @@ export const initializeAdmin = async (): Promise<void> => {
       }
       
       await setDoc(adminDocRef, adminAccount)
-      console.log('Admin account initialized')
+      console.log('✅ Admin account initialized successfully')
+    } else {
+      console.log('✅ Admin account already exists')
     }
   } catch (error) {
-    console.error('Error initializing admin:', error)
+    console.error('❌ Error initializing admin:', error)
+    // エラーが発生した場合の詳細情報
+    if (error instanceof Error) {
+      console.error('Error details:', error.message)
+    }
   }
 }
 
 // ユーザーアカウント存在確認
 export const checkUserExists = async (username: string): Promise<boolean> => {
   try {
+    console.log(`Checking user existence: ${username}`)
     const userDocRef = doc(db, 'user_accounts', username.toLowerCase())
     const userDoc = await getDoc(userDocRef)
-    return userDoc.exists() && userDoc.data()?.isActive === true
+    
+    const exists = userDoc.exists()
+    const isActive = userDoc.data()?.isActive === true
+    
+    console.log(`User ${username}:`, { exists, isActive, data: userDoc.data() })
+    
+    return exists && isActive
   } catch (error) {
-    console.error('Error checking user existence:', error)
+    console.error('❌ Error checking user existence:', error)
+    if (error instanceof Error) {
+      console.error('Error details:', error.message)
+    }
     return false
   }
 }
