@@ -8,7 +8,7 @@ import { updateStageCompletion } from '@/utils/storage'
 import { useUser } from '@/contexts/UserContext'
 import QuizComponent from '@/components/QuizComponent'
 import ResultComponent from '@/components/ResultComponent'
-import LoginScreen from '@/components/LoginScreen'
+import LoginScreenTemp from '@/components/LoginScreenTemp'
 
 export default function QuizPage() {
   const { user, isLoading } = useUser()
@@ -34,7 +34,7 @@ export default function QuizPage() {
   }
 
   if (!user) {
-    return <LoginScreen />
+    return <LoginScreenTemp />
   }
 
   useEffect(() => {

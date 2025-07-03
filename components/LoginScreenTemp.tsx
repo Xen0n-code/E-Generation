@@ -4,29 +4,13 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
 import { useUser } from '@/contexts/UserContext'
-import { loadProgressFromFirebase, syncProgressToFirebase } from '@/services/firebaseStorage'
-import { checkUserExists, initializeAdmin } from '@/services/adminService'
 
-export default function LoginScreen() {
+export default function LoginScreenTemp() {
   const [username, setUsername] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
   const { login } = useUser()
   const router = useRouter()
-
-  // Admin初期化
-  useEffect(() => {
-    const initAdmin = async () => {
-      console.log('🔧 Starting admin initialization...')
-      try {
-        await initializeAdmin()
-        console.log('✅ Admin initialization completed')
-      } catch (error) {
-        console.error('❌ Admin initialization failed:', error)
-      }
-    }
-    initAdmin()
-  }, [])
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -41,47 +25,15 @@ export default function LoginScreen() {
       return
     }
 
-    if (username.trim().length > 20) {
-      setError('ユーザー名は20文字以下で入力してください')
-      return
-    }
-
     setIsLoading(true)
     setError('')
 
     try {
       const trimmedUsername = username.trim()
-      console.log('🚀 Login attempt for:', trimmedUsername)
+      console.log('🚀 Emergency login for:', trimmedUsername)
       
-      // Firebase接続テスト
-      console.log('🔥 Testing Firebase connection...')
-      
-      // ユーザーアカウント存在確認
-      console.log('👤 Checking user existence...')
-      const userExists = await checkUserExists(trimmedUsername)
-      console.log('✅ User exists result:', userExists)
-      
-      if (!userExists) {
-        console.log('❌ User does not exist')
-        setError('そのユーザーは存在しません。管理者にアカウント作成を依頼してください。')
-        setIsLoading(false)
-        return
-      }
-      
-      console.log('✅ User exists, proceeding with login...')
-      
-      // Firebaseから進捗データを取得
-      const firebaseProgress = await loadProgressFromFirebase(trimmedUsername)
-      
-      if (firebaseProgress) {
-        // Firebase上にデータがある場合、ローカルストレージに保存
-        localStorage.setItem('e-generation-progress', JSON.stringify(firebaseProgress))
-        console.log('Firebase進捗データをローカルに同期しました')
-      } else {
-        // Firebase上にデータがない場合、ローカルの進捗をFirebaseに同期
-        await syncProgressToFirebase(trimmedUsername)
-        console.log('ローカル進捗データをFirebaseに同期しました')
-      }
+      // 一時的にユーザー存在チェックをスキップ
+      console.log('⚠️ Skipping user existence check (emergency mode)')
       
       // ログイン実行
       login(trimmedUsername)
@@ -117,6 +69,9 @@ export default function LoginScreen() {
             <p className="text-gray-600">
               英検各級の英単語をマスターしよう
             </p>
+            <div className="mt-2 px-3 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full inline-block">
+              緊急モード（デバッグ中）
+            </div>
           </motion.div>
 
           <motion.form
@@ -136,7 +91,7 @@ export default function LoginScreen() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-lg"
-                placeholder="お名前を入力してください"
+                placeholder="admin（または任意の名前）"
                 disabled={isLoading}
                 maxLength={20}
               />
@@ -166,7 +121,7 @@ export default function LoginScreen() {
                   ログイン中...
                 </div>
               ) : (
-                'ログイン'
+                'ログイン（緊急モード）'
               )}
             </motion.button>
           </motion.form>
@@ -177,8 +132,9 @@ export default function LoginScreen() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
-            <p>ユーザー名を入力するだけで始められます</p>
-            <p className="mt-1">進捗状況は自動的に保存されます</p>
+            <p className="text-yellow-700 bg-yellow-50 p-2 rounded">
+              ⚠️ デバッグモード：Firebase接続をスキップして動作確認中
+            </p>
           </motion.div>
         </div>
       </motion.div>
