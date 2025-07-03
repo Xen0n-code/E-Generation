@@ -16,7 +16,7 @@ export default function QuizComponent({ questions, onComplete, stageId }: QuizCo
   const [selectedOption, setSelectedOption] = useState<number | null>(null)
   const [showFeedback, setShowFeedback] = useState(false)
   const [startTime] = useState(new Date())
-  const [timeLeft, setTimeLeft] = useState(30)
+  const [timeLeft, setTimeLeft] = useState(15)
   const quizContainerRef = useRef<HTMLDivElement>(null)
 
   const currentQuestion = questions[currentQuestionIndex]
@@ -44,6 +44,9 @@ export default function QuizComponent({ questions, onComplete, stageId }: QuizCo
     const newAnswers = [...answers, optionIndex]
     setAnswers(newAnswers)
 
+    const isCorrect = optionIndex === currentQuestion.correctAnswer
+    const delayTime = isCorrect ? 1000 : 2000 // 正解なら1秒、不正解なら2秒
+    
     setTimeout(() => {
       if (isLastQuestion) {
         const score = newAnswers.reduce((acc, answer, index) => {
@@ -65,7 +68,7 @@ export default function QuizComponent({ questions, onComplete, stageId }: QuizCo
         setCurrentQuestionIndex(currentQuestionIndex + 1)
         setSelectedOption(null)
         setShowFeedback(false)
-        setTimeLeft(30)
+        setTimeLeft(15)
         
         // スクロール位置を維持（少し上にスクロールして問題が見えるようにする）
         if (quizContainerRef.current) {
@@ -75,7 +78,7 @@ export default function QuizComponent({ questions, onComplete, stageId }: QuizCo
           })
         }
       }
-    }, 2000)
+    }, delayTime)
   }
 
   const isCorrect = selectedOption === currentQuestion.correctAnswer
@@ -96,7 +99,7 @@ export default function QuizComponent({ questions, onComplete, stageId }: QuizCo
               <span className="text-lg font-semibold text-gray-700">
                 問題 {currentQuestionIndex + 1} / {questions.length}
               </span>
-              <div className={`text-lg font-bold ${timeLeft <= 10 ? 'text-red-500' : 'text-gray-700'}`}>
+              <div className={`text-lg font-bold ${timeLeft <= 5 ? 'text-red-500' : 'text-gray-700'}`}>
                 ⏰ {timeLeft}秒
               </div>
             </div>
