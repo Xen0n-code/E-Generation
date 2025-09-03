@@ -87,31 +87,31 @@ export default function HomePage() {
       </motion.header>
 
       <motion.div 
-        className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto"
+        className="flex flex-col gap-4 max-w-md mx-auto px-4"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
         <motion.button
           onClick={() => setMode('word')}
-          className="p-8 rounded-xl border-2 border-gray-200 hover:border-blue-300 bg-white hover:bg-blue-50 transition-all duration-300"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          className="w-full p-6 sm:p-8 rounded-xl border-2 border-gray-200 hover:border-blue-300 bg-white hover:bg-blue-50 transition-all duration-300 text-center"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
         >
-          <div className="text-4xl mb-4">📚</div>
-          <h3 className="text-2xl font-semibold mb-2">単語モード</h3>
-          <p className="text-gray-600">英検各級の英単語をマスターしよう</p>
+          <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">📚</div>
+          <h3 className="text-xl sm:text-2xl font-semibold mb-2">単語モード</h3>
+          <p className="text-sm sm:text-base text-gray-600">英検各級の英単語をマスターしよう</p>
         </motion.button>
 
         <motion.button
           onClick={() => setMode('grammar')}
-          className="p-8 rounded-xl border-2 border-gray-200 hover:border-green-300 bg-white hover:bg-green-50 transition-all duration-300"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          className="w-full p-6 sm:p-8 rounded-xl border-2 border-gray-200 hover:border-green-300 bg-white hover:bg-green-50 transition-all duration-300 text-center"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
         >
-          <div className="text-4xl mb-4">📝</div>
-          <h3 className="text-2xl font-semibold mb-2">文法モード</h3>
-          <p className="text-gray-600">中学・高校文法を段階的に学習</p>
+          <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">📝</div>
+          <h3 className="text-xl sm:text-2xl font-semibold mb-2">文法モード</h3>
+          <p className="text-sm sm:text-base text-gray-600">中学・高校文法を段階的に学習</p>
         </motion.button>
       </motion.div>
     </div>
@@ -141,20 +141,20 @@ export default function HomePage() {
       </motion.header>
 
       <motion.div 
-        className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto"
+        className="flex flex-col gap-4 max-w-md mx-auto px-4"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
         <Link href="/grammar/junior">
-            <motion.button
-            className="p-8 rounded-xl border-2 border-gray-200 hover:border-green-300 bg-white hover:bg-green-50 transition-all duration-300"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+          <motion.button
+            className="w-full p-6 sm:p-8 rounded-xl border-2 border-gray-200 hover:border-green-300 bg-white hover:bg-green-50 transition-all duration-300 text-center"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
-            <div className="text-4xl mb-4">🏫</div>
-            <h3 className="text-2xl font-semibold mb-2">中学文法</h3>
-            <p className="text-gray-600">基礎から応用まで20ステージ</p>
+            <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">🏫</div>
+            <h3 className="text-xl sm:text-2xl font-semibold mb-2">中学文法</h3>
+            <p className="text-sm sm:text-base text-gray-600">基礎から応用まで20ステージ</p>
           </motion.button>
         </Link>
 
@@ -163,13 +163,13 @@ export default function HomePage() {
             setGrammarLevel('senior')
             // TODO: 高校文法ページに遷移
           }}
-          className="p-8 rounded-xl border-2 border-gray-200 hover:border-purple-300 bg-white hover:bg-purple-50 transition-all duration-300"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          className="w-full p-6 sm:p-8 rounded-xl border-2 border-gray-200 hover:border-purple-300 bg-white hover:bg-purple-50 transition-all duration-300 text-center"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
         >
-          <div className="text-4xl mb-4">🎓</div>
-          <h3 className="text-2xl font-semibold mb-2">高校文法</h3>
-          <p className="text-gray-600">より高度な文法事項を学習</p>
+          <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">🎓</div>
+          <h3 className="text-xl sm:text-2xl font-semibold mb-2">高校文法</h3>
+          <p className="text-sm sm:text-base text-gray-600">より高度な文法事項を学習</p>
         </motion.button>
       </motion.div>
     </div>
