@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { getFirestore } from 'firebase/firestore'
+import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore'
 import { getAnalytics } from 'firebase/analytics'
 
 const firebaseConfig = {
@@ -22,11 +22,34 @@ console.log('Firebase Config Check:', {
   appId: firebaseConfig.appId ? 'SET' : 'MISSING'
 })
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig)
+let app: any
+let db: any
 
-// Initialize Firestore
-export const db = getFirestore(app)
+try {
+  // Initialize Firebase
+  app = initializeApp(firebaseConfig)
+  console.log('✅ Firebase app initialized successfully')
+  
+  // Initialize Firestore
+  db = getFirestore(app)
+  console.log('✅ Firestore initialized successfully')
+  
+  // Connect to emulator if in development mode
+  if (process.env.NODE_ENV === 'development' && process.env.NEXT_PUBLIC_USE_FIREBASE_EMULATOR === 'true') {
+    try {
+      connectFirestoreEmulator(db, 'localhost', 8080)
+      console.log('🧪 Connected to Firestore emulator')
+    } catch (error) {
+      console.warn('⚠️ Firestore emulator connection failed:', error)
+    }
+  }
+  
+} catch (error) {
+  console.error('❌ Firebase initialization failed:', error)
+  throw error
+}
+
+export { db }
 
 // Initialize Analytics (only in browser)
 export const getAnalyticsInstance = () => {

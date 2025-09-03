@@ -1,37 +1,52 @@
 import { Word, EikenLevel } from '@/types'
 
-const loadLevelData = async (level: EikenLevel): Promise<Word[]> => {
+const loadLevelDataFromTxt = async (level: EikenLevel): Promise<Word[]> => {
   try {
-    console.log(`Loading ${level} data...`)
+    console.log(`Loading ${level} data from txt file...`)
     
-    switch (level) {
-      case '5級': {
-        const { words5 } = await import('./levels/5級')
-        return words5
-      }
-      case '4級': {
-        const { words4 } = await import('./levels/4級')
-        return words4
-      }
-      case '3級':
-        // 他の級のファイルが作成されるまで空配列を返す
-        return []
-      case '準2級':
-        return []
-      case '2級':
-        return []
-      case '準1級':
-        return []
-      case '1級':
-        return []
-      default:
-        console.warn(`Unknown level: ${level}`)
-        return []
+    const response = await fetch(`/data/${level}.txt`)
+    if (!response.ok) {
+      throw new Error(`Failed to fetch ${level}.txt: ${response.statusText}`)
     }
+    
+    const text = await response.text()
+    const lines = text.trim().split('\n')
+    
+    const words: Word[] = lines.map((line, index) => {
+      const [word, meaning] = line.split(',')
+      if (!word || !meaning) {
+        console.warn(`Invalid line format in ${level}.txt: ${line}`)
+        return null
+      }
+      
+      return {
+        id: `${level}-${index + 1}`,
+        word: word.trim(),
+        meaning: meaning.trim(),
+        pronunciation: "",
+        example: "",
+        level: level,
+        category: "名詞"
+      }
+    }).filter(Boolean) as Word[]
+    
+    console.log(`Successfully loaded ${words.length} words from ${level}.txt`)
+    return words
+    
   } catch (error) {
-    console.error(`Error loading ${level} data:`, error)
-    return []
+    console.error(`Error loading ${level} data from txt:`, error)
+    // フォールバック: 既存のtsファイルを試す
+    return await loadLevelDataFromTs(level)
   }
+}
+
+const loadLevelDataFromTs = async (level: EikenLevel): Promise<Word[]> => {
+  console.log(`Fallback: No ts files available, returning empty array for ${level}`)
+  return []
+}
+
+const loadLevelData = async (level: EikenLevel): Promise<Word[]> => {
+  return await loadLevelDataFromTxt(level)
 }
 
 let wordsCache: Record<EikenLevel, Word[]> = {

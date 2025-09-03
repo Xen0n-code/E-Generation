@@ -10,11 +10,16 @@ import LoginScreen from '@/components/LoginScreen'
 import Header from '@/components/Header'
 import Link from 'next/link'
 
+type Mode = 'select' | 'word' | 'grammar'
+type GrammarLevel = 'junior' | 'senior'
+
 export default function HomePage() {
   const { user, isLoading } = useUser()
+  const [mode, setMode] = useState<Mode>('select')
   const [selectedLevel, setSelectedLevel] = useState<EikenLevel>('5級')
   const [progress, setProgress] = useState(loadProgress())
   const [stageCount, setStageCount] = useState(0)
+  const [grammarLevel, setGrammarLevel] = useState<GrammarLevel>('junior')
 
   // 最後に選択した級を保存・復元
   useEffect(() => {
@@ -64,24 +69,139 @@ export default function HomePage() {
     return <LoginScreen />
   }
 
+  // モード選択画面
+  const ModeSelector = () => (
+    <div className="max-w-4xl mx-auto">
+      <motion.header 
+        className="text-center mb-8"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <h1 className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-4">
+          E-Generation
+        </h1>
+        <p className="text-lg text-gray-600">
+          学習モードを選択してください
+        </p>
+      </motion.header>
+
+      <motion.div 
+        className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+      >
+        <motion.button
+          onClick={() => setMode('word')}
+          className="p-8 rounded-xl border-2 border-gray-200 hover:border-blue-300 bg-white hover:bg-blue-50 transition-all duration-300"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <div className="text-4xl mb-4">📚</div>
+          <h3 className="text-2xl font-semibold mb-2">単語モード</h3>
+          <p className="text-gray-600">英検各級の英単語をマスターしよう</p>
+        </motion.button>
+
+        <motion.button
+          onClick={() => setMode('grammar')}
+          className="p-8 rounded-xl border-2 border-gray-200 hover:border-green-300 bg-white hover:bg-green-50 transition-all duration-300"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <div className="text-4xl mb-4">📝</div>
+          <h3 className="text-2xl font-semibold mb-2">文法モード</h3>
+          <p className="text-gray-600">中学・高校文法を段階的に学習</p>
+        </motion.button>
+      </motion.div>
+    </div>
+  )
+
+  // 文法レベル選択画面
+  const GrammarLevelSelector = () => (
+    <div className="max-w-4xl mx-auto">
+      <motion.header 
+        className="text-center mb-8"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <button 
+          onClick={() => setMode('select')}
+          className="mb-4 px-4 py-2 text-blue-600 hover:text-blue-800 transition-colors"
+        >
+          ← モード選択に戻る
+        </button>
+        <h1 className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600 mb-4">
+          文法モード
+        </h1>
+        <p className="text-lg text-gray-600">
+          学習レベルを選択してください
+        </p>
+      </motion.header>
+
+      <motion.div 
+        className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+      >
+        <Link href="/grammar/junior">
+            <motion.button
+            className="p-8 rounded-xl border-2 border-gray-200 hover:border-green-300 bg-white hover:bg-green-50 transition-all duration-300"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <div className="text-4xl mb-4">🏫</div>
+            <h3 className="text-2xl font-semibold mb-2">中学文法</h3>
+            <p className="text-gray-600">基礎から応用まで20ステージ</p>
+          </motion.button>
+        </Link>
+
+        <motion.button
+          onClick={() => {
+            setGrammarLevel('senior')
+            // TODO: 高校文法ページに遷移
+          }}
+          className="p-8 rounded-xl border-2 border-gray-200 hover:border-purple-300 bg-white hover:bg-purple-50 transition-all duration-300"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <div className="text-4xl mb-4">🎓</div>
+          <h3 className="text-2xl font-semibold mb-2">高校文法</h3>
+          <p className="text-gray-600">より高度な文法事項を学習</p>
+        </motion.button>
+      </motion.div>
+    </div>
+  )
+
   return (
     <>
       <Header />
       <div className="min-h-screen p-4">
-        <div className="max-w-4xl mx-auto">
-        <motion.header 
-          className="text-center mb-8"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <h1 className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-4">
-            E-Generation
-          </h1>
-          <p className="text-lg text-gray-600">
-            英検各級の英単語をマスターしよう
-          </p>
-        </motion.header>
+        {mode === 'select' && <ModeSelector />}
+        {mode === 'grammar' && <GrammarLevelSelector />}
+        {mode === 'word' && (
+          <div className="max-w-4xl mx-auto">
+            <motion.header 
+              className="text-center mb-8"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <button 
+                onClick={() => setMode('select')}
+                className="mb-4 px-4 py-2 text-blue-600 hover:text-blue-800 transition-colors"
+              >
+                ← モード選択に戻る
+              </button>
+              <h1 className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-4">
+                単語モード
+              </h1>
+              <p className="text-lg text-gray-600">
+                英検各級の英単語をマスターしよう
+              </p>
+            </motion.header>
 
         <motion.div 
           className="mb-8"
@@ -210,6 +330,7 @@ export default function HomePage() {
           </div>
         </motion.div>
         </div>
+        )}
       </div>
     </>
   )

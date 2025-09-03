@@ -14,9 +14,12 @@ export const initializeAdmin = async (): Promise<void> => {
   try {
     console.log('Initializing admin account...')
     const adminDocRef = doc(db, 'user_accounts', 'admin')
+    
+    console.log('🔍 Checking if admin account exists...')
     const adminDoc = await getDoc(adminDocRef)
     
     if (!adminDoc.exists()) {
+      console.log('📝 Creating admin account...')
       const adminAccount: UserAccount = {
         username: 'admin',
         displayName: 'Administrator',
@@ -32,17 +35,33 @@ export const initializeAdmin = async (): Promise<void> => {
     }
   } catch (error) {
     console.error('❌ Error initializing admin:', error)
-    // エラーが発生した場合の詳細情報
+    
+    // Provide more specific error information
     if (error instanceof Error) {
-      console.error('Error details:', error.message)
+      console.error('Error name:', error.name)
+      console.error('Error message:', error.message)
+      console.error('Error stack:', error.stack)
+      
+      // Check for specific Firebase errors
+      if (error.message.includes('Missing or insufficient permissions')) {
+        console.error('🚨 PERMISSION ERROR: Firestore security rules are blocking access.')
+        console.error('📋 Solution: Update your Firestore security rules to allow public access, or implement Firebase Authentication.')
+        console.error('🔧 See firestore.rules file for suggested rules.')
+      } else if (error.message.includes('Failed to get document')) {
+        console.error('🚨 CONNECTION ERROR: Unable to connect to Firestore.')
+        console.error('📋 Check your internet connection and Firebase configuration.')
+      }
     }
+    
+    // Re-throw the error to be handled by the caller
+    throw error
   }
 }
 
 // ユーザーアカウント存在確認
 export const checkUserExists = async (username: string): Promise<boolean> => {
   try {
-    console.log(`Checking user existence: ${username}`)
+    console.log(`🔍 Checking user existence: ${username}`)
     const userDocRef = doc(db, 'user_accounts', username.toLowerCase())
     const userDoc = await getDoc(userDocRef)
     
@@ -54,9 +73,19 @@ export const checkUserExists = async (username: string): Promise<boolean> => {
     return exists && isActive
   } catch (error) {
     console.error('❌ Error checking user existence:', error)
+    
     if (error instanceof Error) {
       console.error('Error details:', error.message)
+      
+      // Check for specific Firebase errors
+      if (error.message.includes('Missing or insufficient permissions')) {
+        console.error('🚨 PERMISSION ERROR: Cannot access user_accounts collection.')
+        console.error('📋 This indicates Firestore security rules are too restrictive.')
+        console.error('🔧 Deploy the firestore.rules file to fix permissions.')
+      }
     }
+    
+    // Return false to prevent login when there are permission issues
     return false
   }
 }
