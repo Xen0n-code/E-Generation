@@ -160,17 +160,18 @@ export default function JuniorGrammarPage() {
                     {stage.id >= 19 && '発展レベル'}
                   </div>
                   
-                  <motion.button
-                    className={`px-4 py-2 rounded-lg font-medium text-white bg-gradient-to-r ${getLevelColor(stage.level)} hover:shadow-lg transition-all duration-200`}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => {
-                      // TODO: 各ステージの学習ページに遷移
-                      alert(`ステージ${stage.id}「${stage.title}」の学習を開始します。`)
-                    }}
-                  >
-                    学習開始
-                  </motion.button>
+                  <Link href={stage.id === 1 ? "/grammar/junior/stage1" : "#"}>
+                    <motion.button
+                      className={`px-4 py-2 rounded-lg font-medium text-white bg-gradient-to-r ${getLevelColor(stage.level)} hover:shadow-lg transition-all duration-200`}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={stage.id !== 1 ? () => {
+                        alert(`ステージ${stage.id}「${stage.title}」の学習ページは準備中です。`)
+                      } : undefined}
+                    >
+                      {stage.id === 1 ? '学習開始' : '準備中'}
+                    </motion.button>
+                  </Link>
                 </div>
               </motion.div>
             ))}

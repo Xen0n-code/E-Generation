@@ -1,228 +1,454 @@
-clock,時計
-wall,壁
-door,扉
-window,窓
-table,テーブル
-chair,椅子
-book,本
-pen,ペン
-pencil,鉛筆
-bag,バッグ
-box,箱
-cup,カップ
-glass,グラス
-bottle,ビン
-key,鍵
-money,お金
-coin,硬貨
-card,カード
-map,地図
-picture,写真
-photo,写真
-camera,カメラ
-phone,電話
-computer,コンピュータ
-television,テレビ
-radio,ラジオ
-music,音楽
-song,歌
-movie,映画
-game,ゲーム
-toy,おもちゃ
-ball,ボール
-car,車
-bus,バス
-train,電車
-bicycle,自転車
-airplane,飛行機
-ship,船
-hotel,ホテル
-restaurant,レストラン
-store,店
-market,市場
-bank,銀行
-hospital,病院
-school,学校
-library,図書館
-park,公園
-station,駅
-airport,空港
-church,教会
-house,家
-room,部屋
-kitchen,キッチン
-bathroom,バスルーム
-bedroom,寝室
-garden,庭
-tree,木
-flower,花
-grass,草
-water,水
-fire,火
-air,空気
-earth,地球
-sun,太陽
-moon,月
-star,星
-cloud,雲
-rain,雨
-snow,雪
-wind,風
-weather,天気
-season,季節
-spring,春
-summer,夏
-fall,秋
-winter,冬
-day,日
-night,夜
-morning,朝
-afternoon,午後
-evening,夕方
-time,時間
-hour,時間
-minute,分
-second,秒
-week,週
-month,月
-year,年
-today,今日
-yesterday,昨日
-tomorrow,明日
-food,食べ物
-breakfast,朝食
-lunch,昼食
-dinner,夕食
-bread,パン
-rice,米
-meat,肉
-fish,魚
-chicken,鶏肉
-egg,卵
-milk,牛乳
-cheese,チーズ
-butter,バター
-sugar,砂糖
-salt,塩
-fruit,果物
-apple,りんご
-orange,オレンジ
-banana,バナナ
-vegetable,野菜
-potato,じゃがいも
-tomato,トマト
-onion,玉ねぎ
-drink,飲み物
-tea,お茶
-coffee,コーヒー
-juice,ジュース
-body,体
-head,頭
-face,顔
-eye,目
-nose,鼻
-mouth,口
-ear,耳
-hair,髪
-hand,手
-finger,指
-arm,腕
-leg,脚
-foot,足
-back,背中
-heart,心臓
-color,色
-red,赤
-blue,青
-yellow,黄色
-green,緑
-white,白
-black,黒
-brown,茶色
-pink,ピンク
-purple,紫
-gray,灰色
-size,大きさ
-big,大きい
-small,小さい
-long,長い
-short,短い
-tall,高い
-low,低い
-wide,広い
-narrow,狭い
-thick,厚い
-thin,薄い
-heavy,重い
-light,軽い
-strong,強い
-weak,弱い
-hard,硬い
-soft,柔らかい
-hot,熱い
-cold,冷たい
-warm,暖かい
-cool,涼しい
-new,新しい
-old,古い
-young,若い
-fast,速い
-slow,遅い
-early,早い
-late,遅い
-good,良い
-bad,悪い
-right,正しい
-wrong,間違った
-easy,簡単な
-difficult,難しい
-important,重要な
-interesting,面白い
-beautiful,美しい
-ugly,醜い
-happy,幸せな
-sad,悲しい
-angry,怒った
-tired,疲れた
-hungry,空腹の
-thirsty,のどが渇いた
-busy,忙しい
-free,自由な
-rich,金持ちの
-poor,貧しい
-famous,有名な
-popular,人気の
-special,特別な
-different,違う
-same,同じ
-other,他の
-another,別の
-each,それぞれの
-every,すべての
-all,全ての
-some,いくつかの
-many,多くの
-much,多くの
-few,少ない
-little,少ない
-first,最初の
-last,最後の
-next,次の
-this,これ
-that,あれ
-here,ここ
-there,そこ
-where,どこ
-when,いつ
-what,何
-who,誰
-why,なぜ
-how,どのように
-which,どちら
-yes,はい
-no,いいえ
-please,お願いします
-thank,感謝する
-sorry,すみません
-hello,こんにちは
-goodbye,さようなら
+clock, 時計
+wall, 壁
+shower, シャワー
+bathroom, 浴室
+door, ドア
+bedroom, 寝室
+apron, エプロン
+magazine, 雑誌
+finish, 終える
+forget, 忘れる
+get up, 起きる
+face, 顔
+busy, 忙しい
+ready, 用意ができている
+sleepy, 眠い
+early, 早く
+oven, オーブン
+table, テーブル
+cookie, クッキー
+dining room, 食堂
+egg, 卵
+sandwich, サンドイッチ
+bread, パン
+water, 水
+cut, 切る
+cook, 料理する
+dish, 皿
+fun, 楽しみ
+delicious, おいしい
+special, 特別な
+easily, 簡単に
+together, 一緒に
+blackboard, 黒板
+math, 数学
+eraser, 消しゴム
+chalk, チョーク
+student, 生徒
+dictionary, 辞書
+textbook, 教科書
+classmate, 同級生
+begin, 始める
+raise, 上げる
+test, テスト
+last, 最後の
+sick, 病気の
+wrong, 間違った
+until, 〜まで
+in, 〜の中に
+instrument, 楽器
+flute, フルート
+drum, ドラム
+band, バンド
+teacher, 先生
+trumpet, トランペット
+sound, 音
+practice, 練習
+bring, 持ってくる
+play, 演奏する
+contest, コンテスト
+jazz, ジャズ
+strange, 変な
+tonight, 今夜
+about, 〜について
+between, 〜の間に
+sunset, 日没
+goal, ゴール
+pass, パス
+club, クラブ
+schoolyard, 校庭
+sad, 悲しい
+tired, 疲れて
+member, メンバー
+change, 変わる
+lose, 負ける
+care, 世話
+coach, コーチ
+game, 試合
+team, チーム
+hard, 一生懸命に
+never, 決して〜ない
+picture, 絵
+librarian, 図書館員
+entrance, 入り口
+closed, 閉まった
+cafeteria, カフェテリア
+exit, 出口
+wait, 待つ
+library, 図書館
+explain, 説明する
+learn, 学ぶ
+put, 置く
+group, グループ
+trip, 旅行
+careful, 注意深い
+different, 違った
+exciting, 興奮させる
+uniform, 制服
+desk, 机
+CD player, CDプレーヤー
+computer, コンピューター
+homework, 宿題
+coin, 硬貨
+open, 開ける
+doughnut, ドーナツ
+clean, きれいにする
+can, 〜できる
+may, 〜してもよい
+racket, ラケット
+late, 遅い
+quick, 速い
+already, すでに
+without, 〜なしで
+uncle, おじ
+umbrella, かさ
+aunt, おば
+ticket, 切符
+car, 車
+window, 窓
+key, かぎ
+hall, 会館
+rain, 雨
+light, 明かり
+taxi, タクシー
+expensive, 高価な
+also, 〜もまた
+there, そこに
+still, まだ
+by, 〜によって
+cloud, 雲
+garden, 庭
+shoe, 靴
+duck, アヒル
+tree, 木
+tulip, チューリップ
+stone, 石
+pond, 池
+grow, 栽培する
+help, 手伝う
+need, 必要とする
+answer, 答え
+moment, 瞬間
+problem, 問題
+if, もし〜ならば
+before, 〜の前に
+TV, テレビ
+video, ビデオ
+vase, 花びん
+bookcase, 本棚
+living room, 居間
+letter, 手紙
+cushion, クッション
+sofa, ソファー
+become, 〜になる
+camp, キャンプ
+send, 送る
+worry, 心配する
+write, 書く
+will, 〜でしょう
+future, 将来
+pool, プール
+grandpa, おじいちゃん
+grandma, おばあちゃん
+painting, 絵をかくこと
+Christmas tree, クリスマスツリー
+sock, 靴下
+parent, 親
+cake, ケーキ
+daughter, 娘
+invite, 招待する
+meet, 会う
+grandparent, 祖父母
+glad, うれしい
+warm, 暖かい
+once again, もう1度
+but, しかし
+for, 〜のために
+dark, 暗い
+windy, 風の強い
+reporter, レポーター
+weather, 天気
+envelope, 封筒
+coat, コート
+postcard, 郵便はがき
+stamp, 切手
+arrive, 到着する
+shall, 〜しましょうか
+clothes, 衣服
+top, 頂上
+rainy, 雨降りの
+snowy, 雪の降る
+terrible, ひどい
+too, 〜すぎる
+shout, 叫ぶ
+smile, ほほえむ
+run, 走る
+street, 通り
+look, 見る
+ride, 乗る
+walk, 歩く
+carry, 運ぶ
+see, 見える
+bike, 自転車
+hobby, 趣味
+difficult, 難しい
+once, 一度
+twice, 二度
+than, 〜よりも
+like, 〜のような
+hotel, ホテル
+building, 建物
+theater, 劇場
+bank, 銀行
+bakery, パン屋
+bookstore, 本屋
+corner, 角
+map, 地図
+tell, 話す
+turn, 曲がる
+left, 左
+museum, 博物館
+post office, 郵便局
+station, 駅
+way, 道
+outside, 外で
+hockey, アイスホッケー
+ice skating, アイススケート
+jogging, ジョギング
+volleyball, バレーボール
+soccer, サッカー
+baseball, 野球
+basketball, バスケットボール
+table tennis, 卓球
+ask, 頼む
+enjoy, 楽しむ
+festival, 祭り
+kind, 種類
+favorite, お気に入りの
+around, 〜の周りに
+really, 本当に
+from, 〜から
+barbecue, バーベキュー
+backyard, 裏庭
+child, 子ども
+gift, 贈り物
+apple pie, アップルパイ
+card, カード
+cheesecake, チーズケーキ
+adult, 大人
+buy, 買う
+wear, 着ている
+catch, 捕らえる
+party, パーティー
+yard, 中庭
+colorful, カラフルな
+nice, すてきな
+away, 離れて
+town, 町
+mountain, 山
+volunteer, ボランティア
+river, 川
+rock, 岩
+bridge, 橋
+park, 公園
+bench, ベンチ
+find, 見つける
+hear, 聞こえる
+over, 〜の上に
+after, 〜の後で
+beside, 〜のそばに
+into, 〜の中へ
+through, 〜を通って
+waiter, ウエイター
+hamburger, ハンバーガー
+French fries, フライドポテト
+coffee, コーヒー
+pizza, ピザ
+spaghetti, スパゲッティ
+menu, メニュー
+drink, 飲む
+order, 注文する
+carrot, ニンジン
+dessert, デザート
+rice, ご飯
+else, ほかに
+sale, 売り出し
+sweater, セーター
+vest, ベスト
+jacket, ジャケット
+sunglasses, サングラス
+scarf, スカーフ
+salesclerk, 店員
+department store, デパート
+elevator, エレベーター
+idea, アイデア
+airplane, 飛行機
+office, 会社
+officer, 警察官
+money, お金
+England, イングランド
+China, 中国
+holiday, 休日
+sightseeing, 観光
+tour, ツアー
+ago, 〜前に
+date, 日付
+subject, 件名
+week, 週
+yesterday, 昨日
+word, 単語
+month, 月
+Bye for now., では、さようなら
+junior high school, 中学校
+brass band, ブラスバンド
+concert, コンサート
+price, 価格
+Christmas Eve, クリスマスイブ
+wish, 願う
+Santa Claus, サンタクロース
+sign up, 申し込む
+all the best, ご多幸を祈って
+alone, 一人きりの
+miss, 乗り遅れる
+one-week special, 一週間限定サービス
+cheeseburger, チーズバーガー
+free, 無料の
+go, 行く
+want, 〜がほしい
+play, 〈スポーツ〉をする
+get, 手に入れる
+take, 〈乗りもの〉に乗る
+eat, 食べる
+visit, 訪れる
+look, 〜に見える
+speak, 〜を話す
+get back to, 〜に帰ってくる
+on sale, 特価で
+next to, 〜のとなりに
+lots of, 多くの〜
+take a walk, 散歩をする
+over there, むこうに
+in front of, 〜の前で
+have a cold, 風邪をひく
+try to do, 〜しようとする
+be happy to do, 〜してうれしい
+be ready for, 〜の準備ができている
+help A with B, AのBを手伝う
+go back to, 〜に帰る
+take a bath, ふろに入る
+need to do, 〜する必要がある
+hope to do, 〜することを望む
+take A for a walk, Aを散歩に連れていく
+have a sale, セールを行う
+hear from, 〜から便りがある
+draw, (絵を)かく
+paint, (ペンキで)かく
+drop, 落とす
+record, 記録する
+beach, 浜
+south, 南
+post, 郵便
+hometown, 故郷
+north, 北
+subway, 地下鉄
+tower, 塔
+lesson, 授業
+speech, 演説
+drama, 劇
+report, 報告
+elementary school, 小学校
+grade, 学年
+page, ページ
+fishing, 魚釣り
+camping, キャンプすること
+Halloween, ハロウィーン
+king, 王
+shoulder, 肩
+waitress, ウエートレス
+dancer, ダンスをする人
+dentist, 歯科医
+guest, 客
+pet, ペット
+DVD, ディーブイディー
+calendar, カレンダー
+album, アルバム
+chopstick, はし
+toothbrush, 歯ブラシ
+cooking, 料理
+chocolate, チョコレート
+pie, パイ
+beef, 牛肉
+tomato, トマト
+chicken, トリ肉
+snack, スナック
+stew, シチュー
+onion, タマネギ
+sausage, ソーセージ
+steak, ステーキ
+watermelon, スイカ
+salt, 塩
+butter, バター
+sugar, 砂糖
+rose, バラ
+whale, クジラ
+elephant, ゾウ
+hamster, ハムスター
+penguin, ペンギン
+puppy, 子犬
+air, 空気
+horse, 馬
+moon, 月
+concert, 音楽会
+band, 楽団
+clarinet, クラリネット
+musical, ミュージカル
+shoes, くつ
+socks, くつ下
+costume, 衣装
+ring, 指輪
+skirt, スカート
+tie, ネクタイ
+Hawaii, ハワイ州
+Italy, イタリア
+Chicago, シカゴ
+Thailand, タイ
+badminton, バドミントン
+cycling, サイクリング
+hockey, ホッケー
+office, 事務所
+sale, 販売
+front, 正面
+center, 中心
+line, 線
+parade, パレード
+passport, パスポート
+poster, ポスター
+step, 一歩
+action, 行動
+haircut, 散髪
+hairstyle, 髪型
+luck, 運
+monster, 怪物
+seat, 座席
+title, 表題
+full, いっぱいの
+easy, やさしい
+heavy, 重い
+professional, プロの
+angry, 怒った
+dirty, 汚い
+rich, 金持ちの
+slow, 遅い
+social, 社会の
+low, 低い
+lucky, 運のよい
