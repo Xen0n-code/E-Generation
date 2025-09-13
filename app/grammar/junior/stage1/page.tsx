@@ -39,20 +39,20 @@ const STAGE1_SUBSTAGES = [
   { 
     id: 4, 
     stageNumber: '1-4',
-    title: 'We/They are', 
-    description: '「私たち/彼らは〜です」の表現',
+    title: 'am / is / are の使い分け', 
+    description: 'IとYou以外の主語でのbe動詞',
     completed: false,
-    locked: true,
-    emoji: '👪'
+    locked: false,
+    emoji: '🎯'
   },
   { 
     id: 5, 
     stageNumber: '1-5',
-    title: 'be動詞まとめ', 
-    description: 'am, is, areの総復習',
+    title: '単数と複数のbe動詞', 
+    description: 'isとareの使い分け',
     completed: false,
-    locked: true,
-    emoji: '✨'
+    locked: false,
+    emoji: '📊'
   }
 ]
 
@@ -168,6 +168,10 @@ export default function Stage1Page() {
       window.location.href = '/grammar/junior/stage1/1-2'
     } else if (substageId === 3) {
       window.location.href = '/grammar/junior/stage1/1-3'
+    } else if (substageId === 4) {
+      window.location.href = '/grammar/junior/stage1/1-4'
+    } else if (substageId === 5) {
+      window.location.href = '/grammar/junior/stage1/1-5'
     } else {
       alert(`サブステージ${substageId}の学習画面は準備中です`)
     }
