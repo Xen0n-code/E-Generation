@@ -11,51 +11,33 @@ import Link from 'next/link'
 const QUESTIONS = [
   {
     id: 1,
-    type: 'subject' as const,
-    english: 'Tom plays soccer.',
-    japanese: 'トムはサッカーをしています',
-    words: ['Tom', 'plays', 'soccer.'],
-    correctAnswer: 'Tom'
+    japanese: '私は猫が好きです。',
+    words: ['I', 'like', 'cats.'],
+    correctAnswer: 'I like cats.'
   },
   {
     id: 2,
-    type: 'subject' as const,
-    english: 'They watch TV.',
-    japanese: '彼らはテレビを見ています',
-    words: ['They', 'watch', 'TV.'],
-    correctAnswer: 'They'
+    japanese: '私は英語を勉強する。',
+    words: ['I', 'study', 'English.'],
+    correctAnswer: 'I study English.'
   },
   {
     id: 3,
-    type: 'subject' as const,
-    english: 'My cat sleeps on the bed.',
-    japanese: '猫がベッドで寝ています',
-    words: ['My cat', 'sleeps', 'on', 'the', 'bed.'],
-    correctAnswer: 'My cat'
+    japanese: '私は野球をする。',
+    words: ['I', 'play', 'baseball.'],
+    correctAnswer: 'I play baseball.'
   },
   {
     id: 4,
-    type: 'verb' as const,
-    english: 'I like pizza.',
-    japanese: '私はピザが好きです',
-    words: ['I', 'like', 'pizza.'],
-    correctAnswer: 'like'
+    japanese: '私はテレビを見る。',
+    words: ['I', 'watch', 'TV.'],
+    correctAnswer: 'I watch TV.'
   },
   {
     id: 5,
-    type: 'verb' as const,
-    english: 'She reads a book.',
-    japanese: '彼女は本を読みます',
-    words: ['She', 'reads', 'a', 'book.'],
-    correctAnswer: 'reads'
-  },
-  {
-    id: 6,
-    type: 'verb' as const,
-    english: 'We play tennis after school.',
-    japanese: '私たちは放課後テニスをします',
-    words: ['We', 'play', 'tennis', 'after', 'school.'],
-    correctAnswer: 'play'
+    japanese: '私はりんごを食べる。',
+    words: ['I', 'eat', 'an', 'apple.'],
+    correctAnswer: 'I eat an apple.'
   }
 ]
 
@@ -78,7 +60,7 @@ const ExplanationModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =>
             exit={{ opacity: 0 }}
             onClick={onClose}
           />
-          
+
           {/* モーダルコンテンツ */}
           <motion.div
             className="relative bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] shadow-2xl overflow-y-auto"
@@ -89,54 +71,28 @@ const ExplanationModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =>
           >
             <div className="p-8">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-gray-800 mb-4">主語と動詞</h2>
+              <h2 className="text-3xl font-bold text-gray-800 mb-4">一般動詞の語順</h2>
               <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-green-500 mx-auto rounded-full"></div>
             </div>
 
             <div className="space-y-8">
-              {/* 主語の説明 */}
+              {/* 解説 */}
               <div className="bg-blue-50 rounded-xl p-6">
                 <h3 className="text-2xl font-bold text-blue-800 mb-4 flex items-center">
-                  <span className="mr-3 text-3xl">👤</span>
-                  主語とは？
+                  <span className="mr-3 text-3xl">📝</span>
+                  一般動詞の語順
                 </h3>
                 <p className="text-xl text-blue-700 mb-4 leading-relaxed">
-                  「主語」っていうのは文章の主人公のこと！
+                  一般動詞を使うときは、言葉の順番が日本語とは違うので気を付けよう！
                 </p>
-                <div className="space-y-3">
-                  <div className="bg-white rounded-lg p-4">
-                    <p className="text-lg">
-                      <span className="font-bold text-blue-600">「犬が走る」</span> → 主語は<span className="bg-yellow-200 px-2 py-1 rounded font-bold">「犬」</span>
-                    </p>
+                <div className="bg-white rounded-lg p-4">
+                  <div className="mb-4">
+                    <p className="text-lg font-bold text-gray-800 mb-2">私は音楽が好きです。</p>
+                    <p className="text-lg font-bold text-blue-600">I like music.</p>
                   </div>
-                  <div className="bg-white rounded-lg p-4">
-                    <p className="text-lg">
-                      <span className="font-bold text-blue-600">「ぼくはリンゴを食べる」</span> → 主語は<span className="bg-yellow-200 px-2 py-1 rounded font-bold">「ぼく」</span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* 動詞の説明 */}
-              <div className="bg-green-50 rounded-xl p-6">
-                <h3 className="text-2xl font-bold text-green-800 mb-4 flex items-center">
-                  <span className="mr-3 text-3xl">⚡</span>
-                  動詞とは？
-                </h3>
-                <p className="text-xl text-green-700 mb-4 leading-relaxed">
-                  主語の動きや状態を表す言葉！
-                </p>
-                <div className="space-y-3">
-                  <div className="bg-white rounded-lg p-4">
-                    <p className="text-lg">
-                      <span className="font-bold text-green-600">「犬が走る」</span> → 動詞は<span className="bg-yellow-200 px-2 py-1 rounded font-bold">「走る」</span>
-                    </p>
-                  </div>
-                  <div className="bg-white rounded-lg p-4">
-                    <p className="text-lg">
-                      <span className="font-bold text-green-600">「ぼくはリンゴを食べる」</span> → 動詞は<span className="bg-yellow-200 px-2 py-1 rounded font-bold">「食べる」</span>
-                    </p>
-                  </div>
+                  <p className="text-lg text-gray-600">
+                    （「私は→好きです→音楽が」の順番になっている）
+                  </p>
                 </div>
               </div>
             </div>
@@ -159,33 +115,28 @@ const ExplanationModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =>
 }
 
 // 単語選択ボタン
-const WordButton = ({ 
-  word, 
-  isSelected, 
-  isCorrect, 
-  isIncorrect, 
-  onClick 
+const WordButton = ({
+  word,
+  isSelected,
+  onClick,
+  disabled
 }: {
   word: string
   isSelected: boolean
-  isCorrect: boolean
-  isIncorrect: boolean
   onClick: () => void
+  disabled: boolean
 }) => {
-  const getButtonStyle = () => {
-    if (isCorrect) return 'bg-green-500 text-white border-green-500'
-    if (isIncorrect) return 'bg-red-500 text-white border-red-500'
-    if (isSelected) return 'bg-blue-500 text-white border-blue-500'
-    return 'bg-white text-gray-800 border-gray-300 hover:border-blue-400 hover:bg-blue-50'
-  }
-
   return (
     <motion.button
-      className={`px-4 py-3 text-lg font-semibold rounded-xl border-2 transition-all duration-300 ${getButtonStyle()}`}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
+      className={`px-4 py-3 text-lg font-semibold rounded-xl border-2 transition-all duration-300 ${
+        isSelected
+          ? 'bg-blue-500 text-white border-blue-500'
+          : 'bg-white text-gray-800 border-gray-300 hover:border-blue-400 hover:bg-blue-50'
+      } ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+      whileHover={!disabled ? { scale: 1.05 } : {}}
+      whileTap={!disabled ? { scale: 0.95 } : {}}
       onClick={onClick}
-      disabled={isCorrect || isIncorrect}
+      disabled={disabled}
     >
       {word}
     </motion.button>
@@ -220,10 +171,11 @@ const ClearScreen = ({ score, totalQuestions, onBackToStage }: {
   )
 }
 
-export default function Stage1Lesson1() {
+export default function Stage2Lesson1() {
   const { user, isLoading } = useUser()
   const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [selectedWord, setSelectedWord] = useState<string | null>(null)
+  const [selectedWords, setSelectedWords] = useState<string[]>([])
+  const [availableWords, setAvailableWords] = useState<string[]>([])
   const [showResult, setShowResult] = useState(false)
   const [showExplanation, setShowExplanation] = useState(true)
   const [answeredQuestions, setAnsweredQuestions] = useState<{ [key: number]: boolean }>({})
@@ -243,16 +195,41 @@ export default function Stage1Lesson1() {
 
   const question = getCurrentQuestion()
 
+  // Fisher-Yates シャッフルアルゴリズム
+  const shuffleArray = (array: string[]) => {
+    const shuffled = [...array]
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+    }
+    return shuffled
+  }
+
+  // 問題が変わったら単語をシャッフル
+  useEffect(() => {
+    const shuffled = shuffleArray(question.words)
+    setAvailableWords(shuffled)
+    setSelectedWords([])
+  }, [currentQuestion, retryIndex, isRetryPhase])
+
   const handleWordClick = (word: string) => {
     if (showResult) return
-    setSelectedWord(word)
+
+    if (selectedWords.includes(word)) {
+      // 選択解除
+      setSelectedWords(prev => prev.filter(w => w !== word))
+      setAvailableWords(prev => [...prev, word])
+    } else {
+      // 選択
+      setSelectedWords(prev => [...prev, word])
+      setAvailableWords(prev => prev.filter(w => w !== word))
+    }
   }
 
   const handleSubmit = () => {
-    if (!selectedWord) return
-    
-    const isCorrect = selectedWord === question.correctAnswer
-    
+    const userAnswer = selectedWords.join(' ')
+    const isCorrect = userAnswer === question.correctAnswer
+
     if (isRetryPhase) {
       // 再出題フェーズの場合
       const questionIndex = incorrectQuestions[retryIndex]
@@ -260,14 +237,13 @@ export default function Stage1Lesson1() {
         setAnsweredQuestions(prev => ({ ...prev, [questionIndex]: true }))
         setFinalScore(prev => prev + 1)
       }
-      
+
       setShowResult(true)
 
       setTimeout(() => {
         if (retryIndex < incorrectQuestions.length - 1) {
           // 次の間違えた問題へ
           setRetryIndex(retryIndex + 1)
-          setSelectedWord(null)
           setShowResult(false)
         } else {
           // 再出題完了
@@ -283,13 +259,12 @@ export default function Stage1Lesson1() {
         setAnsweredQuestions(prev => ({ ...prev, [currentQuestion]: false }))
         setIncorrectQuestions(prev => [...prev, currentQuestion])
       }
-      
+
       setShowResult(true)
 
       setTimeout(() => {
         if (currentQuestion < QUESTIONS.length - 1) {
           setCurrentQuestion(currentQuestion + 1)
-          setSelectedWord(null)
           setShowResult(false)
         } else {
           // 初回終了、間違えた問題があるかチェック
@@ -299,7 +274,6 @@ export default function Stage1Lesson1() {
               setIncorrectQuestions(finalIncorrectQuestions)
               setIsRetryPhase(true)
               setRetryIndex(0)
-              setSelectedWord(null)
               setShowResult(false)
             } else {
               setIsComplete(true)
@@ -313,7 +287,7 @@ export default function Stage1Lesson1() {
   }
 
   const handleBackToStage = () => {
-    window.location.href = '/grammar/junior/stage1'
+    window.location.href = '/grammar/junior/stage2'
   }
 
   if (isLoading) {
@@ -337,27 +311,27 @@ export default function Stage1Lesson1() {
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 p-4">
         <div className="max-w-4xl mx-auto">
           {isComplete ? (
-            <ClearScreen 
-              score={finalScore} 
-              totalQuestions={QUESTIONS.length} 
-              onBackToStage={handleBackToStage} 
+            <ClearScreen
+              score={finalScore}
+              totalQuestions={QUESTIONS.length}
+              onBackToStage={handleBackToStage}
             />
           ) : (
             <>
               {/* ヘッダー */}
-              <motion.header 
+              <motion.header
                 className="flex items-center justify-between mb-8"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <Link 
-                  href="/grammar/junior/stage1"
+                <Link
+                  href="/grammar/junior/stage2"
                   className="px-4 py-2 text-blue-600 hover:text-blue-800 transition-colors rounded-lg bg-white shadow-sm hover:shadow-md"
                 >
-                  ← ステージ1に戻る
+                  ← ステージ2に戻る
                 </Link>
-                
+
                 <button
                   className="px-4 py-2 bg-blue-100 text-blue-700 rounded-lg font-medium hover:bg-blue-200 transition-colors"
                   onClick={() => setShowExplanation(true)}
@@ -376,7 +350,7 @@ export default function Stage1Lesson1() {
                 <div className="bg-white rounded-xl shadow-lg p-4">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
-                      <span className="text-lg font-bold text-gray-700">1-1: 主語と動詞</span>
+                      <span className="text-lg font-bold text-gray-700">2-1: 一般動詞の語順</span>
                       {isRetryPhase && (
                         <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">
                           間違えた問題
@@ -384,8 +358,8 @@ export default function Stage1Lesson1() {
                       )}
                     </div>
                     <span className="text-sm text-gray-600">
-                      {isRetryPhase 
-                        ? `${retryIndex + 1} / ${incorrectQuestions.length}` 
+                      {isRetryPhase
+                        ? `${retryIndex + 1} / ${incorrectQuestions.length}`
                         : `${currentQuestion + 1} / ${QUESTIONS.length}`
                       }
                     </span>
@@ -394,8 +368,8 @@ export default function Stage1Lesson1() {
                     <motion.div
                       className="bg-gradient-to-r from-blue-500 to-green-500 h-3 rounded-full"
                       initial={{ width: "0%" }}
-                      animate={{ 
-                        width: isRetryPhase 
+                      animate={{
+                        width: isRetryPhase
                           ? `${((retryIndex + 1) / incorrectQuestions.length) * 100}%`
                           : `${((currentQuestion + 1) / QUESTIONS.length) * 100}%`
                       }}
@@ -413,72 +387,95 @@ export default function Stage1Lesson1() {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 key={isRetryPhase ? `retry-${retryIndex}` : currentQuestion}
               >
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                {question.type === 'subject' ? '主語を選んでください' : '動詞を選んでください'}
-              </h2>
-              <div className="bg-gray-50 rounded-xl p-6 mb-6">
-                <p className="text-2xl font-bold text-gray-800 mb-2">{question.english}</p>
-                <p className="text-lg text-gray-600">（{question.japanese}）</p>
-              </div>
-            </div>
+                <div className="text-center mb-8">
+                  <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                    単語を正しい順番に並べて英文を作ってください
+                  </h2>
+                  <div className="bg-gray-50 rounded-xl p-6 mb-6">
+                    <p className="text-2xl font-bold text-gray-800">{question.japanese}</p>
+                  </div>
+                </div>
 
-            {/* 単語選択 */}
-            <div className="flex flex-wrap justify-center gap-3 mb-8">
-              {question.words.map((word, index) => (
-                <WordButton
-                  key={index}
-                  word={word}
-                  isSelected={selectedWord === word}
-                  isCorrect={showResult && word === question.correctAnswer}
-                  isIncorrect={showResult && selectedWord === word && word !== question.correctAnswer}
-                  onClick={() => handleWordClick(word)}
-                />
-              ))}
-            </div>
+                {/* 選択された単語 */}
+                <div className="mb-6">
+                  <h3 className="text-lg font-semibold text-gray-700 mb-3">作った英文：</h3>
+                  <div className="bg-blue-50 rounded-xl p-4 min-h-[60px] border-2 border-blue-200">
+                    {selectedWords.length > 0 ? (
+                      <div className="flex flex-wrap gap-2">
+                        {selectedWords.map((word, index) => (
+                          <span
+                            key={index}
+                            className="px-3 py-2 bg-gray-100 text-gray-800 rounded-lg font-medium cursor-pointer hover:bg-gray-200 border border-gray-300"
+                            onClick={() => handleWordClick(word)}
+                          >
+                            {word}
+                          </span>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="text-gray-400 italic">単語をクリックして文を作ってください</p>
+                    )}
+                  </div>
+                </div>
 
-            {/* 結果表示 */}
-            <AnimatePresence>
-              {showResult && (
-                <motion.div
-                  className="text-center"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                >
-                  {selectedWord === question.correctAnswer ? (
-                    <div className="text-green-600">
-                      <div className="text-4xl mb-2">🎉</div>
-                      <p className="text-xl font-bold">正解です！</p>
-                    </div>
-                  ) : (
-                    <div className="text-red-600">
-                      <div className="text-4xl mb-2">😅</div>
-                      <p className="text-xl font-bold">不正解です。正解は「{question.correctAnswer}」でした。</p>
-                    </div>
+                {/* 利用可能な単語 */}
+                <div className="mb-8">
+                  <h3 className="text-lg font-semibold text-gray-700 mb-3">単語：</h3>
+                  <div className="flex flex-wrap justify-center gap-3">
+                    {availableWords.map((word, index) => (
+                      <WordButton
+                        key={`${word}-${index}`}
+                        word={word}
+                        isSelected={false}
+                        onClick={() => handleWordClick(word)}
+                        disabled={showResult}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* 結果表示 */}
+                <AnimatePresence>
+                  {showResult && (
+                    <motion.div
+                      className="text-center mb-6"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                    >
+                      {selectedWords.join(' ') === question.correctAnswer ? (
+                        <div className="text-green-600">
+                          <div className="text-4xl mb-2">🎉</div>
+                          <p className="text-xl font-bold">正解です！</p>
+                        </div>
+                      ) : (
+                        <div className="text-red-600">
+                          <div className="text-4xl mb-2">😅</div>
+                          <p className="text-xl font-bold">不正解です。正解は「{question.correctAnswer}」でした。</p>
+                        </div>
+                      )}
+                    </motion.div>
                   )}
-                </motion.div>
-              )}
-            </AnimatePresence>
+                </AnimatePresence>
 
-            {/* 回答ボタン */}
-            {!showResult && (
-              <div className="text-center">
-                <motion.button
-                  className={`px-8 py-3 text-xl font-bold rounded-xl transition-all duration-300 ${
-                    selectedWord 
-                      ? 'bg-gradient-to-r from-blue-500 to-green-500 text-white shadow-lg hover:shadow-xl' 
-                      : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                  }`}
-                  whileHover={selectedWord ? { scale: 1.05 } : {}}
-                  whileTap={selectedWord ? { scale: 0.95 } : {}}
-                  onClick={handleSubmit}
-                  disabled={!selectedWord}
-                >
-                  回答する
-                </motion.button>
-              </div>
-            )}
+                {/* 回答ボタン */}
+                {!showResult && (
+                  <div className="text-center">
+                    <motion.button
+                      className={`px-8 py-3 text-xl font-bold rounded-xl transition-all duration-300 ${
+                        selectedWords.length > 0
+                          ? 'bg-gradient-to-r from-blue-500 to-green-500 text-white shadow-lg hover:shadow-xl'
+                          : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                      }`}
+                      whileHover={selectedWords.length > 0 ? { scale: 1.05 } : {}}
+                      whileTap={selectedWords.length > 0 ? { scale: 0.95 } : {}}
+                      onClick={handleSubmit}
+                      disabled={selectedWords.length === 0}
+                    >
+                      回答する
+                    </motion.button>
+                  </div>
+                )}
               </motion.div>
             </>
           )}
@@ -486,9 +483,9 @@ export default function Stage1Lesson1() {
       </div>
 
       {/* 解説モーダル */}
-      <ExplanationModal 
-        isOpen={showExplanation} 
-        onClose={() => setShowExplanation(false)} 
+      <ExplanationModal
+        isOpen={showExplanation}
+        onClose={() => setShowExplanation(false)}
       />
     </>
   )

@@ -11,51 +11,33 @@ import Link from 'next/link'
 const QUESTIONS = [
   {
     id: 1,
-    type: 'subject' as const,
-    english: 'Tom plays soccer.',
-    japanese: 'トムはサッカーをしています',
-    words: ['Tom', 'plays', 'soccer.'],
-    correctAnswer: 'Tom'
+    japanese: '彼は生徒です。',
+    english: 'He is a student.',
+    isThirdPerson: true
   },
   {
     id: 2,
-    type: 'subject' as const,
-    english: 'They watch TV.',
-    japanese: '彼らはテレビを見ています',
-    words: ['They', 'watch', 'TV.'],
-    correctAnswer: 'They'
+    japanese: '私は東京出身です。',
+    english: 'I am from Tokyo.',
+    isThirdPerson: false
   },
   {
     id: 3,
-    type: 'subject' as const,
-    english: 'My cat sleeps on the bed.',
-    japanese: '猫がベッドで寝ています',
-    words: ['My cat', 'sleeps', 'on', 'the', 'bed.'],
-    correctAnswer: 'My cat'
+    japanese: 'この本は新しいです。',
+    english: 'This book is new.',
+    isThirdPerson: true
   },
   {
     id: 4,
-    type: 'verb' as const,
-    english: 'I like pizza.',
-    japanese: '私はピザが好きです',
-    words: ['I', 'like', 'pizza.'],
-    correctAnswer: 'like'
+    japanese: 'あなたは忙しいです。',
+    english: 'You are busy.',
+    isThirdPerson: false
   },
   {
     id: 5,
-    type: 'verb' as const,
-    english: 'She reads a book.',
-    japanese: '彼女は本を読みます',
-    words: ['She', 'reads', 'a', 'book.'],
-    correctAnswer: 'reads'
-  },
-  {
-    id: 6,
-    type: 'verb' as const,
-    english: 'We play tennis after school.',
-    japanese: '私たちは放課後テニスをします',
-    words: ['We', 'play', 'tennis', 'after', 'school.'],
-    correctAnswer: 'play'
+    japanese: 'トムは背が高いです。',
+    english: 'Tom is tall.',
+    isThirdPerson: true
   }
 ]
 
@@ -78,7 +60,7 @@ const ExplanationModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =>
             exit={{ opacity: 0 }}
             onClick={onClose}
           />
-          
+
           {/* モーダルコンテンツ */}
           <motion.div
             className="relative bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] shadow-2xl overflow-y-auto"
@@ -89,53 +71,44 @@ const ExplanationModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =>
           >
             <div className="p-8">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-gray-800 mb-4">主語と動詞</h2>
+              <h2 className="text-3xl font-bold text-gray-800 mb-4">「3人称」ってなに？</h2>
               <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-green-500 mx-auto rounded-full"></div>
             </div>
 
             <div className="space-y-8">
-              {/* 主語の説明 */}
+              {/* 解説 */}
               <div className="bg-blue-50 rounded-xl p-6">
                 <h3 className="text-2xl font-bold text-blue-800 mb-4 flex items-center">
-                  <span className="mr-3 text-3xl">👤</span>
-                  主語とは？
+                  <span className="mr-3 text-3xl">👥</span>
+                  人称について
                 </h3>
                 <p className="text-xl text-blue-700 mb-4 leading-relaxed">
-                  「主語」っていうのは文章の主人公のこと！
+                  英語には、「3人称」という言葉がよく出てくるので、この言葉を理解しよう！
                 </p>
-                <div className="space-y-3">
-                  <div className="bg-white rounded-lg p-4">
-                    <p className="text-lg">
-                      <span className="font-bold text-blue-600">「犬が走る」</span> → 主語は<span className="bg-yellow-200 px-2 py-1 rounded font-bold">「犬」</span>
-                    </p>
-                  </div>
-                  <div className="bg-white rounded-lg p-4">
-                    <p className="text-lg">
-                      <span className="font-bold text-blue-600">「ぼくはリンゴを食べる」</span> → 主語は<span className="bg-yellow-200 px-2 py-1 rounded font-bold">「ぼく」</span>
-                    </p>
-                  </div>
-                </div>
-              </div>
 
-              {/* 動詞の説明 */}
-              <div className="bg-green-50 rounded-xl p-6">
-                <h3 className="text-2xl font-bold text-green-800 mb-4 flex items-center">
-                  <span className="mr-3 text-3xl">⚡</span>
-                  動詞とは？
-                </h3>
-                <p className="text-xl text-green-700 mb-4 leading-relaxed">
-                  主語の動きや状態を表す言葉！
-                </p>
-                <div className="space-y-3">
-                  <div className="bg-white rounded-lg p-4">
+                <div className="space-y-4">
+                  <div className="bg-white rounded-lg p-4 border-l-4 border-green-500">
+                    <p className="text-lg font-bold text-green-700 mb-2">1人称</p>
                     <p className="text-lg">
-                      <span className="font-bold text-green-600">「犬が走る」</span> → 動詞は<span className="bg-yellow-200 px-2 py-1 rounded font-bold">「走る」</span>
+                      まず、自分のことを<span className="bg-yellow-200 px-2 py-1 rounded font-bold">「1人称」</span>といいます。
                     </p>
+                    <p className="text-lg font-bold text-blue-600 mt-2">I（私は）</p>
                   </div>
-                  <div className="bg-white rounded-lg p-4">
+
+                  <div className="bg-white rounded-lg p-4 border-l-4 border-blue-500">
+                    <p className="text-lg font-bold text-blue-700 mb-2">2人称</p>
                     <p className="text-lg">
-                      <span className="font-bold text-green-600">「ぼくはリンゴを食べる」</span> → 動詞は<span className="bg-yellow-200 px-2 py-1 rounded font-bold">「食べる」</span>
+                      そして、相手のことを<span className="bg-yellow-200 px-2 py-1 rounded font-bold">「2人称」</span>といいます。
                     </p>
+                    <p className="text-lg font-bold text-blue-600 mt-2">You（あなたは）</p>
+                  </div>
+
+                  <div className="bg-white rounded-lg p-4 border-l-4 border-purple-500">
+                    <p className="text-lg font-bold text-purple-700 mb-2">3人称</p>
+                    <p className="text-lg">
+                      自分と相手以外の人やもののことを、<span className="bg-yellow-200 px-2 py-1 rounded font-bold">「3人称」</span>といいます。
+                    </p>
+                    <p className="text-lg font-bold text-blue-600 mt-2">He（彼は）She（彼女は）など</p>
                   </div>
                 </div>
               </div>
@@ -158,36 +131,45 @@ const ExplanationModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =>
   )
 }
 
-// 単語選択ボタン
-const WordButton = ({ 
-  word, 
-  isSelected, 
-  isCorrect, 
-  isIncorrect, 
-  onClick 
+// ○×選択ボタン
+const AnswerButton = ({
+  isCorrect,
+  label,
+  selected,
+  showResult,
+  onClick
 }: {
-  word: string
-  isSelected: boolean
   isCorrect: boolean
-  isIncorrect: boolean
+  label: string
+  selected: boolean
+  showResult: boolean
   onClick: () => void
 }) => {
   const getButtonStyle = () => {
-    if (isCorrect) return 'bg-green-500 text-white border-green-500'
-    if (isIncorrect) return 'bg-red-500 text-white border-red-500'
-    if (isSelected) return 'bg-blue-500 text-white border-blue-500'
+    if (showResult) {
+      if (isCorrect) {
+        return 'bg-green-500 text-white border-green-500'
+      } else if (selected && !isCorrect) {
+        return 'bg-red-500 text-white border-red-500'
+      }
+      return 'bg-gray-200 text-gray-500 border-gray-300'
+    }
+
+    if (selected) {
+      return 'bg-blue-500 text-white border-blue-500'
+    }
     return 'bg-white text-gray-800 border-gray-300 hover:border-blue-400 hover:bg-blue-50'
   }
 
   return (
     <motion.button
-      className={`px-4 py-3 text-lg font-semibold rounded-xl border-2 transition-all duration-300 ${getButtonStyle()}`}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
+      className={`px-8 py-4 text-xl font-bold rounded-xl border-2 transition-all duration-300 min-w-[120px] ${getButtonStyle()}`}
+      whileHover={!showResult ? { scale: 1.05 } : {}}
+      whileTap={!showResult ? { scale: 0.95 } : {}}
       onClick={onClick}
-      disabled={isCorrect || isIncorrect}
+      disabled={showResult}
     >
-      {word}
+      {label}
     </motion.button>
   )
 }
@@ -220,10 +202,10 @@ const ClearScreen = ({ score, totalQuestions, onBackToStage }: {
   )
 }
 
-export default function Stage1Lesson1() {
+export default function Stage2Lesson2() {
   const { user, isLoading } = useUser()
   const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [selectedWord, setSelectedWord] = useState<string | null>(null)
+  const [selectedAnswer, setSelectedAnswer] = useState<boolean | null>(null)
   const [showResult, setShowResult] = useState(false)
   const [showExplanation, setShowExplanation] = useState(true)
   const [answeredQuestions, setAnsweredQuestions] = useState<{ [key: number]: boolean }>({})
@@ -243,16 +225,16 @@ export default function Stage1Lesson1() {
 
   const question = getCurrentQuestion()
 
-  const handleWordClick = (word: string) => {
+  const handleAnswerClick = (answer: boolean) => {
     if (showResult) return
-    setSelectedWord(word)
+    setSelectedAnswer(answer)
   }
 
   const handleSubmit = () => {
-    if (!selectedWord) return
-    
-    const isCorrect = selectedWord === question.correctAnswer
-    
+    if (selectedAnswer === null) return
+
+    const isCorrect = selectedAnswer === question.isThirdPerson
+
     if (isRetryPhase) {
       // 再出題フェーズの場合
       const questionIndex = incorrectQuestions[retryIndex]
@@ -260,14 +242,14 @@ export default function Stage1Lesson1() {
         setAnsweredQuestions(prev => ({ ...prev, [questionIndex]: true }))
         setFinalScore(prev => prev + 1)
       }
-      
+
       setShowResult(true)
 
       setTimeout(() => {
         if (retryIndex < incorrectQuestions.length - 1) {
           // 次の間違えた問題へ
           setRetryIndex(retryIndex + 1)
-          setSelectedWord(null)
+          setSelectedAnswer(null)
           setShowResult(false)
         } else {
           // 再出題完了
@@ -283,13 +265,13 @@ export default function Stage1Lesson1() {
         setAnsweredQuestions(prev => ({ ...prev, [currentQuestion]: false }))
         setIncorrectQuestions(prev => [...prev, currentQuestion])
       }
-      
+
       setShowResult(true)
 
       setTimeout(() => {
         if (currentQuestion < QUESTIONS.length - 1) {
           setCurrentQuestion(currentQuestion + 1)
-          setSelectedWord(null)
+          setSelectedAnswer(null)
           setShowResult(false)
         } else {
           // 初回終了、間違えた問題があるかチェック
@@ -299,7 +281,7 @@ export default function Stage1Lesson1() {
               setIncorrectQuestions(finalIncorrectQuestions)
               setIsRetryPhase(true)
               setRetryIndex(0)
-              setSelectedWord(null)
+              setSelectedAnswer(null)
               setShowResult(false)
             } else {
               setIsComplete(true)
@@ -313,7 +295,7 @@ export default function Stage1Lesson1() {
   }
 
   const handleBackToStage = () => {
-    window.location.href = '/grammar/junior/stage1'
+    window.location.href = '/grammar/junior/stage2'
   }
 
   if (isLoading) {
@@ -337,27 +319,27 @@ export default function Stage1Lesson1() {
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 p-4">
         <div className="max-w-4xl mx-auto">
           {isComplete ? (
-            <ClearScreen 
-              score={finalScore} 
-              totalQuestions={QUESTIONS.length} 
-              onBackToStage={handleBackToStage} 
+            <ClearScreen
+              score={finalScore}
+              totalQuestions={QUESTIONS.length}
+              onBackToStage={handleBackToStage}
             />
           ) : (
             <>
               {/* ヘッダー */}
-              <motion.header 
+              <motion.header
                 className="flex items-center justify-between mb-8"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <Link 
-                  href="/grammar/junior/stage1"
+                <Link
+                  href="/grammar/junior/stage2"
                   className="px-4 py-2 text-blue-600 hover:text-blue-800 transition-colors rounded-lg bg-white shadow-sm hover:shadow-md"
                 >
-                  ← ステージ1に戻る
+                  ← ステージ2に戻る
                 </Link>
-                
+
                 <button
                   className="px-4 py-2 bg-blue-100 text-blue-700 rounded-lg font-medium hover:bg-blue-200 transition-colors"
                   onClick={() => setShowExplanation(true)}
@@ -376,7 +358,7 @@ export default function Stage1Lesson1() {
                 <div className="bg-white rounded-xl shadow-lg p-4">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
-                      <span className="text-lg font-bold text-gray-700">1-1: 主語と動詞</span>
+                      <span className="text-lg font-bold text-gray-700">2-2: 「3人称」ってなに？</span>
                       {isRetryPhase && (
                         <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">
                           間違えた問題
@@ -384,8 +366,8 @@ export default function Stage1Lesson1() {
                       )}
                     </div>
                     <span className="text-sm text-gray-600">
-                      {isRetryPhase 
-                        ? `${retryIndex + 1} / ${incorrectQuestions.length}` 
+                      {isRetryPhase
+                        ? `${retryIndex + 1} / ${incorrectQuestions.length}`
                         : `${currentQuestion + 1} / ${QUESTIONS.length}`
                       }
                     </span>
@@ -394,8 +376,8 @@ export default function Stage1Lesson1() {
                     <motion.div
                       className="bg-gradient-to-r from-blue-500 to-green-500 h-3 rounded-full"
                       initial={{ width: "0%" }}
-                      animate={{ 
-                        width: isRetryPhase 
+                      animate={{
+                        width: isRetryPhase
                           ? `${((retryIndex + 1) / incorrectQuestions.length) * 100}%`
                           : `${((currentQuestion + 1) / QUESTIONS.length) * 100}%`
                       }}
@@ -413,72 +395,88 @@ export default function Stage1Lesson1() {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 key={isRetryPhase ? `retry-${retryIndex}` : currentQuestion}
               >
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                {question.type === 'subject' ? '主語を選んでください' : '動詞を選んでください'}
-              </h2>
-              <div className="bg-gray-50 rounded-xl p-6 mb-6">
-                <p className="text-2xl font-bold text-gray-800 mb-2">{question.english}</p>
-                <p className="text-lg text-gray-600">（{question.japanese}）</p>
-              </div>
-            </div>
+                <div className="text-center mb-8">
+                  <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                    この英文は3人称ですか？
+                  </h2>
+                  <div className="bg-gray-50 rounded-xl p-6 mb-6">
+                    <p className="text-lg font-bold text-gray-600 mb-2">{question.japanese}</p>
+                    <p className="text-2xl font-bold text-gray-800">{question.english}</p>
+                  </div>
+                </div>
 
-            {/* 単語選択 */}
-            <div className="flex flex-wrap justify-center gap-3 mb-8">
-              {question.words.map((word, index) => (
-                <WordButton
-                  key={index}
-                  word={word}
-                  isSelected={selectedWord === word}
-                  isCorrect={showResult && word === question.correctAnswer}
-                  isIncorrect={showResult && selectedWord === word && word !== question.correctAnswer}
-                  onClick={() => handleWordClick(word)}
-                />
-              ))}
-            </div>
+                {/* 選択肢 */}
+                <div className="flex justify-center gap-6 mb-8">
+                  <AnswerButton
+                    isCorrect={question.isThirdPerson}
+                    label="○"
+                    selected={selectedAnswer === true}
+                    showResult={showResult}
+                    onClick={() => handleAnswerClick(true)}
+                  />
+                  <AnswerButton
+                    isCorrect={!question.isThirdPerson}
+                    label="×"
+                    selected={selectedAnswer === false}
+                    showResult={showResult}
+                    onClick={() => handleAnswerClick(false)}
+                  />
+                </div>
 
-            {/* 結果表示 */}
-            <AnimatePresence>
-              {showResult && (
-                <motion.div
-                  className="text-center"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                >
-                  {selectedWord === question.correctAnswer ? (
-                    <div className="text-green-600">
-                      <div className="text-4xl mb-2">🎉</div>
-                      <p className="text-xl font-bold">正解です！</p>
-                    </div>
-                  ) : (
-                    <div className="text-red-600">
-                      <div className="text-4xl mb-2">😅</div>
-                      <p className="text-xl font-bold">不正解です。正解は「{question.correctAnswer}」でした。</p>
-                    </div>
+                {/* 結果表示 */}
+                <AnimatePresence>
+                  {showResult && (
+                    <motion.div
+                      className="text-center mb-6"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                    >
+                      {selectedAnswer === question.isThirdPerson ? (
+                        <div className="text-green-600">
+                          <div className="text-4xl mb-2">🎉</div>
+                          <p className="text-xl font-bold">正解です！</p>
+                          <p className="text-lg mt-2">
+                            {question.isThirdPerson ?
+                              'この英文は3人称です！' :
+                              'この英文は3人称ではありません！'
+                            }
+                          </p>
+                        </div>
+                      ) : (
+                        <div className="text-red-600">
+                          <div className="text-4xl mb-2">😅</div>
+                          <p className="text-xl font-bold">不正解です。</p>
+                          <p className="text-lg mt-2">
+                            {question.isThirdPerson ?
+                              'この英文は3人称です。' :
+                              'この英文は3人称ではありません。'
+                            }
+                          </p>
+                        </div>
+                      )}
+                    </motion.div>
                   )}
-                </motion.div>
-              )}
-            </AnimatePresence>
+                </AnimatePresence>
 
-            {/* 回答ボタン */}
-            {!showResult && (
-              <div className="text-center">
-                <motion.button
-                  className={`px-8 py-3 text-xl font-bold rounded-xl transition-all duration-300 ${
-                    selectedWord 
-                      ? 'bg-gradient-to-r from-blue-500 to-green-500 text-white shadow-lg hover:shadow-xl' 
-                      : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                  }`}
-                  whileHover={selectedWord ? { scale: 1.05 } : {}}
-                  whileTap={selectedWord ? { scale: 0.95 } : {}}
-                  onClick={handleSubmit}
-                  disabled={!selectedWord}
-                >
-                  回答する
-                </motion.button>
-              </div>
-            )}
+                {/* 回答ボタン */}
+                {!showResult && (
+                  <div className="text-center">
+                    <motion.button
+                      className={`px-8 py-3 text-xl font-bold rounded-xl transition-all duration-300 ${
+                        selectedAnswer !== null
+                          ? 'bg-gradient-to-r from-blue-500 to-green-500 text-white shadow-lg hover:shadow-xl'
+                          : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                      }`}
+                      whileHover={selectedAnswer !== null ? { scale: 1.05 } : {}}
+                      whileTap={selectedAnswer !== null ? { scale: 0.95 } : {}}
+                      onClick={handleSubmit}
+                      disabled={selectedAnswer === null}
+                    >
+                      回答する
+                    </motion.button>
+                  </div>
+                )}
               </motion.div>
             </>
           )}
@@ -486,9 +484,9 @@ export default function Stage1Lesson1() {
       </div>
 
       {/* 解説モーダル */}
-      <ExplanationModal 
-        isOpen={showExplanation} 
-        onClose={() => setShowExplanation(false)} 
+      <ExplanationModal
+        isOpen={showExplanation}
+        onClose={() => setShowExplanation(false)}
       />
     </>
   )

@@ -160,16 +160,16 @@ export default function JuniorGrammarPage() {
                     {stage.id >= 19 && '発展レベル'}
                   </div>
                   
-                  <Link href={stage.id === 1 ? "/grammar/junior/stage1" : "#"}>
+                  <Link href={stage.id === 1 ? "/grammar/junior/stage1" : stage.id === 2 ? "/grammar/junior/stage2" : "#"}>
                     <motion.button
                       className={`px-4 py-2 rounded-lg font-medium text-white bg-gradient-to-r ${getLevelColor(stage.level)} hover:shadow-lg transition-all duration-200`}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      onClick={stage.id !== 1 ? () => {
+                      onClick={stage.id !== 1 && stage.id !== 2 ? () => {
                         alert(`ステージ${stage.id}「${stage.title}」の学習ページは準備中です。`)
                       } : undefined}
                     >
-                      {stage.id === 1 ? '学習開始' : '準備中'}
+                      {stage.id === 1 || stage.id === 2 ? '学習開始' : '準備中'}
                     </motion.button>
                   </Link>
                 </div>
