@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@anthropic-ai/claude-code": "^1.0.112",
     "firebase": "^11.10.0",
     "framer-motion": "^10.16.0",
     "next": "^14.0.0",
