@@ -11,47 +11,42 @@ import Link from 'next/link'
 const QUESTIONS = [
   {
     id: 1,
-    type: 'fill' as const,
-    english: 'She () a dog.',
+    type: 'input' as const,
+    sentence: ['She', '', 'a dog.'],
     japanese: '彼女は犬を飼っています',
-    explanation: '「飼っている」はhaveを使います',
-    options: ['have', 'has', 'had'],
+    explanation: '「飼っている」はhaveを使い、3人称単数なのでhasになります',
     correctAnswer: 'has'
   },
   {
     id: 2,
-    type: 'fill' as const,
-    english: 'He () to school.',
+    type: 'input' as const,
+    sentence: ['He', '', 'to school.'],
     japanese: '彼は学校に行きます',
     explanation: 'goは3人称単数でgoesになります',
-    options: ['go', 'goes', 'going'],
     correctAnswer: 'goes'
   },
   {
     id: 3,
-    type: 'fill' as const,
-    english: 'She () her hands.',
+    type: 'input' as const,
+    sentence: ['She', '', 'her hands.'],
     japanese: '彼女は手を洗います',
     explanation: 'washは3人称単数でwashesになります',
-    options: ['wash', 'washes', 'washing'],
     correctAnswer: 'washes'
   },
   {
     id: 4,
-    type: 'fill' as const,
-    english: 'Tom () TV at night.',
+    type: 'input' as const,
+    sentence: ['Tom', '', 'TV at night.'],
     japanese: 'トムは夜にテレビを見ます',
     explanation: 'watchは3人称単数でwatchesになります',
-    options: ['watch', 'watches', 'watching'],
     correctAnswer: 'watches'
   },
   {
     id: 5,
-    type: 'fill' as const,
-    english: 'Ken () math.',
+    type: 'input' as const,
+    sentence: ['Ken', '', 'math.'],
     japanese: 'ケンは数学を勉強します',
     explanation: 'studyは3人称単数でstudiesになります（y→ies）',
-    options: ['study', 'studies', 'studying'],
     correctAnswer: 'studies'
   }
 ]
@@ -168,37 +163,49 @@ const ExplanationModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =>
   )
 }
 
-// 選択肢ボタン
-const OptionButton = ({
-  option,
-  isSelected,
-  isCorrect,
-  isIncorrect,
-  onClick
+// 文章表示コンポーネント
+const SentenceDisplay = ({
+  sentence,
+  userInput,
+  onInputChange,
+  showResult,
+  isCorrect
 }: {
-  option: string
-  isSelected: boolean
+  sentence: string[]
+  userInput: string
+  onInputChange: (value: string) => void
+  showResult: boolean
   isCorrect: boolean
-  isIncorrect: boolean
-  onClick: () => void
 }) => {
-  const getButtonStyle = () => {
-    if (isCorrect) return 'bg-green-500 text-white border-green-500'
-    if (isIncorrect) return 'bg-red-500 text-white border-red-500'
-    if (isSelected) return 'bg-blue-500 text-white border-blue-500'
-    return 'bg-white text-gray-800 border-gray-300 hover:border-blue-400 hover:bg-blue-50'
+  const getInputStyle = () => {
+    if (showResult) {
+      return isCorrect
+        ? 'border-green-500 bg-green-50 text-green-800'
+        : 'border-red-500 bg-red-50 text-red-800'
+    }
+    return 'border-blue-300 bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-200'
   }
 
   return (
-    <motion.button
-      className={`px-6 py-3 text-lg font-semibold rounded-xl border-2 transition-all duration-300 ${getButtonStyle()}`}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      onClick={onClick}
-      disabled={isCorrect || isIncorrect}
-    >
-      {option}
-    </motion.button>
+    <div className="flex flex-wrap items-center justify-center gap-2 text-2xl font-semibold">
+      {sentence.map((part, index) => (
+        part === '' ? (
+          <input
+            key={index}
+            type="text"
+            value={userInput}
+            onChange={(e) => onInputChange(e.target.value)}
+            className={`px-4 py-2 border-2 rounded-lg text-center min-w-[120px] transition-all duration-300 ${getInputStyle()}`}
+            placeholder="動詞を入力"
+            disabled={showResult}
+          />
+        ) : (
+          <span key={index} className="text-gray-800">
+            {part}
+          </span>
+        )
+      ))}
+    </div>
   )
 }
 
@@ -233,7 +240,7 @@ const ClearScreen = ({ score, totalQuestions, onBackToStage }: {
 export default function Stage2Lesson4() {
   const { user, isLoading } = useUser()
   const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [selectedOption, setSelectedOption] = useState<string | null>(null)
+  const [userInput, setUserInput] = useState('')
   const [showResult, setShowResult] = useState(false)
   const [showExplanation, setShowExplanation] = useState(true)
   const [answeredQuestions, setAnsweredQuestions] = useState<{ [key: number]: boolean }>({})
@@ -253,15 +260,15 @@ export default function Stage2Lesson4() {
 
   const question = getCurrentQuestion()
 
-  const handleOptionClick = (option: string) => {
+  const handleInputChange = (value: string) => {
     if (showResult) return
-    setSelectedOption(option)
+    setUserInput(value)
   }
 
   const handleSubmit = () => {
-    if (!selectedOption) return
+    if (!userInput.trim()) return
 
-    const isCorrect = selectedOption === question.correctAnswer
+    const isCorrect = userInput.toLowerCase().trim() === question.correctAnswer.toLowerCase()
 
     if (isRetryPhase) {
       // 再出題フェーズの場合
@@ -277,7 +284,7 @@ export default function Stage2Lesson4() {
         if (retryIndex < incorrectQuestions.length - 1) {
           // 次の間違えた問題へ
           setRetryIndex(retryIndex + 1)
-          setSelectedOption(null)
+          setUserInput('')
           setShowResult(false)
         } else {
           // 再出題完了
@@ -299,7 +306,7 @@ export default function Stage2Lesson4() {
       setTimeout(() => {
         if (currentQuestion < QUESTIONS.length - 1) {
           setCurrentQuestion(currentQuestion + 1)
-          setSelectedOption(null)
+          setUserInput('')
           setShowResult(false)
         } else {
           // 初回終了、間違えた問題があるかチェック
@@ -309,7 +316,7 @@ export default function Stage2Lesson4() {
               setIncorrectQuestions(finalIncorrectQuestions)
               setIsRetryPhase(true)
               setRetryIndex(0)
-              setSelectedOption(null)
+              setUserInput('')
               setShowResult(false)
             } else {
               setIsComplete(true)
@@ -425,27 +432,22 @@ export default function Stage2Lesson4() {
               >
                 <div className="text-center mb-8">
                   <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                    適切な動詞を選んでください
+                    適切な動詞を入力してください
                   </h2>
                   <div className="bg-gray-50 rounded-xl p-6 mb-6">
-                    <p className="text-2xl font-bold text-gray-800 mb-2">{question.english}</p>
-                    <p className="text-lg text-gray-600">（{question.japanese}）</p>
-                    <p className="text-sm text-blue-600 mt-2">{question.explanation}</p>
+                    <p className="text-lg text-gray-600 mb-4">（{question.japanese}）</p>
                   </div>
                 </div>
 
-                {/* 選択肢 */}
-                <div className="flex justify-center gap-4 mb-8">
-                  {question.options.map((option, index) => (
-                    <OptionButton
-                      key={index}
-                      option={option}
-                      isSelected={selectedOption === option}
-                      isCorrect={showResult && option === question.correctAnswer}
-                      isIncorrect={showResult && selectedOption === option && option !== question.correctAnswer}
-                      onClick={() => handleOptionClick(option)}
-                    />
-                  ))}
+                {/* 文章入力 */}
+                <div className="mb-8">
+                  <SentenceDisplay
+                    sentence={question.sentence}
+                    userInput={userInput}
+                    onInputChange={handleInputChange}
+                    showResult={showResult}
+                    isCorrect={userInput.toLowerCase().trim() === question.correctAnswer.toLowerCase()}
+                  />
                 </div>
 
                 {/* 結果表示 */}
@@ -457,7 +459,7 @@ export default function Stage2Lesson4() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -20 }}
                     >
-                      {selectedOption === question.correctAnswer ? (
+                      {userInput.toLowerCase().trim() === question.correctAnswer.toLowerCase() ? (
                         <div className="text-green-600">
                           <div className="text-4xl mb-2">🎉</div>
                           <p className="text-xl font-bold">正解です！</p>
@@ -468,6 +470,9 @@ export default function Stage2Lesson4() {
                           <p className="text-xl font-bold">不正解です。正解は「{question.correctAnswer}」でした。</p>
                         </div>
                       )}
+                      <div className="bg-blue-50 rounded-lg p-4 mt-4">
+                        <p className="text-blue-800">{question.explanation}</p>
+                      </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -477,14 +482,14 @@ export default function Stage2Lesson4() {
                   <div className="text-center">
                     <motion.button
                       className={`px-8 py-3 text-xl font-bold rounded-xl transition-all duration-300 ${
-                        selectedOption
+                        userInput.trim()
                           ? 'bg-gradient-to-r from-blue-500 to-green-500 text-white shadow-lg hover:shadow-xl'
                           : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                       }`}
-                      whileHover={selectedOption ? { scale: 1.05 } : {}}
-                      whileTap={selectedOption ? { scale: 0.95 } : {}}
+                      whileHover={userInput.trim() ? { scale: 1.05 } : {}}
+                      whileTap={userInput.trim() ? { scale: 0.95 } : {}}
                       onClick={handleSubmit}
-                      disabled={!selectedOption}
+                      disabled={!userInput.trim()}
                     >
                       回答する
                     </motion.button>

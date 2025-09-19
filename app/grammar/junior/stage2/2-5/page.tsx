@@ -206,7 +206,7 @@ const AnswerArea = ({
         selectedWords.map((word, index) => (
           <motion.button
             key={index}
-            className="px-4 py-3 text-lg font-semibold rounded-xl border-2 bg-blue-500 text-white border-blue-500 hover:bg-blue-600 transition-colors"
+            className="px-4 py-3 text-lg font-semibold rounded-xl border-2 bg-white text-gray-800 border-gray-300 hover:bg-gray-100 transition-colors"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => onWordClick(index)}

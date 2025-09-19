@@ -11,8 +11,8 @@ const LESSONS = [
   { id: 1, title: '一般動詞の語順', description: '主語 + 動詞 + 目的語の基本語順', completed: false },
   { id: 2, title: '「3人称」ってなに？', description: '1人称、2人称、3人称の区別を学ぼう', completed: false },
   { id: 3, title: '一般動詞の変化', description: '3人称単数現在形での動詞の変化を学ぼう', completed: false },
-  { id: 4, title: '三人称単数現在', description: '主語が三人称単数の時の動詞の変化', completed: false },
-  { id: 5, title: '頻度を表す副詞', description: 'always, usually, often などの使い方', completed: false }
+  { id: 4, title: '特別な3単現', description: '特別な形になる動詞たち', completed: false },
+  { id: 5, title: 'sは3人称単数', description: '複数の場合はsを付けない', completed: false }
 ]
 
 export default function Stage2Page() {
@@ -99,21 +99,23 @@ export default function Stage2Page() {
                     <Link href={
                       lesson.id === 1 ? "/grammar/junior/stage2/2-1" :
                       lesson.id === 2 ? "/grammar/junior/stage2/2-2" :
-                      lesson.id === 3 ? "/grammar/junior/stage2/2-3" : "#"
+                      lesson.id === 3 ? "/grammar/junior/stage2/2-3" :
+                      lesson.id === 4 ? "/grammar/junior/stage2/2-4" :
+                      lesson.id === 5 ? "/grammar/junior/stage2/2-5" : "#"
                     }>
                       <motion.button
                         className={`px-6 py-2 rounded-lg font-medium text-white transition-all duration-200 ${
-                          lesson.id <= 3
+                          lesson.id <= 5
                             ? 'bg-gradient-to-r from-blue-500 to-blue-600 hover:shadow-lg'
                             : 'bg-gray-400 cursor-not-allowed'
                         }`}
-                        whileHover={lesson.id <= 3 ? { scale: 1.05 } : {}}
-                        whileTap={lesson.id <= 3 ? { scale: 0.95 } : {}}
-                        onClick={lesson.id > 3 ? () => {
+                        whileHover={lesson.id <= 5 ? { scale: 1.05 } : {}}
+                        whileTap={lesson.id <= 5 ? { scale: 0.95 } : {}}
+                        onClick={lesson.id > 5 ? () => {
                           alert(`レッスン${lesson.id}「${lesson.title}」は準備中です。`)
                         } : undefined}
                       >
-                        {lesson.id <= 3 ? '学習開始' : '準備中'}
+                        {lesson.id <= 5 ? '学習開始' : '準備中'}
                       </motion.button>
                     </Link>
                   </div>
